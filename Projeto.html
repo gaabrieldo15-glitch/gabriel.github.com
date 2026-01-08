@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Lorde | Criação de Sites & Edição</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      color: white;
+      scroll-behavior: smooth;
+    }
+
+    header {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+      animation: fadeIn 1.5s ease;
+    }
+
+    header h1 {
+      font-size: 3rem;
+    }
+
+    header span {
+      color: #00ffd5;
+    }
+
+    header p {
+      max-width: 600px;
+      margin-top: 15px;
+      opacity: 0.9;
+    }
+
+    .btn {
+      margin-top: 25px;
+      padding: 15px 30px;
+      background: #00ffd5;
+      color: black;
+      border: none;
+      border-radius: 30px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      transform: scale(1.08);
+      box-shadow: 0 0 20px #00ffd5;
+    }
+
+    section {
+      padding: 80px 20px;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 40px;
+      font-size: 2.2rem;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.1);
+      padding: 30px;
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+      transition: 0.4s;
+      opacity: 0;
+      transform: translateY(40px);
+    }
+
+    .card:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 0 20px rgba(0,255,213,0.4);
+    }
+
+    .card h3 {
+      margin-bottom: 10px;
+      color: #00ffd5;
+    }
+
+    .contact {
+      text-align: center;
+    }
+
+    .contact p {
+      margin: 10px 0;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      opacity: 0.6;
+      font-size: 14px;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 2.2rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>Olá, eu sou <span>Lorde</span></h1>
+  <p>Crio sites modernos, edito vídeos e imagens, e ajudo pessoas e negócios a se destacarem no mundo digital.</p>
+  <button class="btn" onclick="scrollToSection()">Ver Serviços</button>
+</header>
+
+<section id="servicos">
+  <h2>Meus Serviços</h2>
+  <div class="cards">
+    <div class="card">
+      <h3>Criação de Sites</h3>
+      <p>Sites modernos, rápidos, responsivos e com visual profissional.</p>
+    </div>
+    <div class="card">
+      <h3>Edição de Vídeos</h3>
+      <p>Edição criativa para redes sociais, apresentações e projetos pessoais.</p>
+    </div>
+    <div class="card">
+      <h3>Edição de Fotos</h3>
+      <p>Tratamento de imagens, ajustes visuais e artes digitais.</p>
+    </div>
+  </div>
+</section>
+
+<section class="contact">
+  <h2>Contato</h2>
+  <p>Email: <strong id="email">gaabrieldo15@gmail.com</strong></p>
+  <button class="btn" onclick="copiar('email')">Copiar Email</button>
+
+  <p style="margin-top:20px;">Telefone: <strong id="tel">11917678921</strong></p>
+  <button class="btn" onclick="copiar('tel')">Copiar Telefone</button>
+</section>
+
+<footer>
+  © 2026 — Lorde | Sites & Edição Digital
+</footer>
+
+<script>
+  function scrollToSection() {
+    document.getElementById("servicos").scrollIntoView({ behavior: "smooth" });
+  }
+
+  function copiar(id) {
+    const texto = document.getElementById(id).innerText;
+    navigator.clipboard.writeText(texto);
+    alert("Copiado: " + texto);
+  }
+
+  // animação ao rolar
+  const cards = document.querySelectorAll('.card');
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = 1;
+        entry.target.style.transform = "translateY(0)";
+      }
+    });
+  }, { threshold: 0.2 });
+
+  cards.forEach(card => observer.observe(card));
+</script>
+
+</body>
+</html>
